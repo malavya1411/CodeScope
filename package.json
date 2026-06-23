@@ -2,9 +2,9 @@
   "name": "codescope-offline",
   "displayName": "CodeScope Offline",
   "description": "Understand any codebase — no AI required. AST-powered code intelligence, fully offline.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "codescope",
-  "icon": "media/icon.png",
+  "icon": "media/codescope.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/codescope/codescope"
@@ -141,7 +141,7 @@
         {
           "id": "codescope-sidebar",
           "title": "CodeScope",
-          "icon": "media/codescope-icon.svg"
+          "icon": "media/codescope.png"
         }
       ]
     },
