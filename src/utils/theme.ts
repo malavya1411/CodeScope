@@ -125,6 +125,7 @@ export function generateWebviewHTML(
   ${dataScript}
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
+    window.vscodeAPI = vscode;
     window.addEventListener('error', (event) => {
       vscode.postMessage({ type: 'error', payload: event.message + ' at ' + event.filename + ':' + event.lineno });
     });
