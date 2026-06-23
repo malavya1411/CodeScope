@@ -1,0 +1,7 @@
+node_modules
+.vscode-test/
+out/
+webview/node_modules
+webview/dist
+src/**/*.map
+.eslintcache

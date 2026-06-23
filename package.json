@@ -1,0 +1,262 @@
+{
+  "name": "codescope",
+  "displayName": "CodeScope",
+  "description": "Understand any codebase — no AI required. AST-powered code intelligence, fully offline.",
+  "version": "1.0.0",
+  "publisher": "codescope",
+  "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codescope/codescope"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization",
+    "Linters"
+  ],
+  "keywords": [
+    "code analysis",
+    "AST",
+    "complexity",
+    "dependency graph",
+    "static analysis",
+    "code intelligence"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codescope.analyzeFile",
+        "title": "Analyze Current File",
+        "category": "CodeScope",
+        "icon": "$(search)"
+      },
+      {
+        "command": "codescope.analyzeProject",
+        "title": "Analyze Repository",
+        "category": "CodeScope",
+        "icon": "$(repo)"
+      },
+      {
+        "command": "codescope.dependencyGraph",
+        "title": "Show Dependency Graph",
+        "category": "CodeScope",
+        "icon": "$(type-hierarchy)"
+      },
+      {
+        "command": "codescope.complexityAnalysis",
+        "title": "Show Complexity Report",
+        "category": "CodeScope",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "codescope.showDashboard",
+        "title": "Open Dashboard",
+        "category": "CodeScope",
+        "icon": "$(dashboard)"
+      },
+      {
+        "command": "codescope.trackVariable",
+        "title": "Track Variable",
+        "category": "CodeScope",
+        "icon": "$(variable)"
+      },
+      {
+        "command": "codescope.showCallHierarchy",
+        "title": "Show Call Hierarchy",
+        "category": "CodeScope",
+        "icon": "$(call-outgoing)"
+      },
+      {
+        "command": "codescope.showExecutionFlow",
+        "title": "Show Execution Flow",
+        "category": "CodeScope",
+        "icon": "$(git-branch)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "codescope.analyzeFile",
+          "group": "navigation",
+          "when": "resourceExtname =~ /\\.(ts|tsx|js|jsx)$/"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "codescope.trackVariable",
+          "group": "codescope@1",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codescope.showCallHierarchy",
+          "group": "codescope@2",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codescope.showExecutionFlow",
+          "group": "codescope@3",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codescope.analyzeFile",
+          "group": "codescope@4",
+          "when": "editorTextFocus && resourceExtname =~ /\\.(ts|tsx|js|jsx)$/"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "codescope.analyzeProject",
+          "group": "codescope@1",
+          "when": "explorerViewletVisible"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "codescope.analyzeFile",
+          "when": "editorIsOpen"
+        },
+        {
+          "command": "codescope.trackVariable",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codescope.showCallHierarchy",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codescope.showExecutionFlow",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codescope-sidebar",
+          "title": "CodeScope",
+          "icon": "media/codescope-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "codescope-sidebar": [
+        {
+          "id": "codescope.projectView",
+          "name": "Project",
+          "type": "tree"
+        },
+        {
+          "id": "codescope.quickActions",
+          "name": "Quick Actions",
+          "type": "tree"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "CodeScope",
+      "properties": {
+        "codescope.analysis.includeNodeModules": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include node_modules in analysis (not recommended)"
+        },
+        "codescope.analysis.maxFiles": {
+          "type": "number",
+          "default": 5000,
+          "description": "Maximum number of files to analyze"
+        },
+        "codescope.complexity.cyclomaticThreshold": {
+          "type": "number",
+          "default": 10,
+          "description": "Cyclomatic complexity threshold for warnings"
+        },
+        "codescope.complexity.cognitiveThreshold": {
+          "type": "number",
+          "default": 15,
+          "description": "Cognitive complexity threshold for warnings"
+        },
+        "codescope.ui.showInlineDecorations": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show inline complexity decorations in the editor"
+        },
+        "codescope.cache.maxEntries": {
+          "type": "number",
+          "default": 1000,
+          "description": "Maximum number of cached analysis results"
+        },
+        "codescope.analysis.excludePatterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/build/**",
+            "**/.git/**",
+            "**/coverage/**"
+          ],
+          "description": "Glob patterns to exclude from analysis"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "codescope.showDashboard",
+        "key": "ctrl+shift+d",
+        "mac": "cmd+shift+d",
+        "when": "!terminalFocus"
+      },
+      {
+        "command": "codescope.analyzeFile",
+        "key": "ctrl+shift+a",
+        "mac": "cmd+shift+a",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test",
+    "build-webview": "cd webview && npm run build",
+    "dev-webview": "cd webview && npm run dev",
+    "install-all": "npm install && cd webview && npm install"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.9",
+    "eslint": "^8.57.0",
+    "ts-loader": "^9.6.2",
+    "typescript": "^5.4.5",
+    "webpack": "^5.107.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.24.5",
+    "@babel/traverse": "^7.24.5",
+    "@babel/types": "^7.24.5",
+    "minimatch": "^9.0.4",
+    "ts-morph": "^22.0.0",
+    "typescript": "^5.4.5"
+  }
+}

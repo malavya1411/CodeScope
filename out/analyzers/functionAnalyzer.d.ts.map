@@ -1,0 +1,1 @@
+{"version":3,"file":"functionAnalyzer.d.ts","sourceRoot":"","sources":["../../src/analyzers/functionAnalyzer.ts"],"names":[],"mappings":"AAAA;;;GAGG;AAEH,OAAO,KAAK,EAAE,MAAM,YAAY,CAAC;AAQjC,OAAO,EACL,gBAAgB,EAMjB,MAAM,iBAAiB,CAAC;AA4JzB;;GAEG;AACH,wBAAgB,gBAAgB,CAC9B,UAAU,EAAE,EAAE,CAAC,UAAU,EACzB,QAAQ,EAAE,MAAM,EAChB,YAAY,EAAE,MAAM,GACnB,gBAAgB,EAAE,CA8EpB"}

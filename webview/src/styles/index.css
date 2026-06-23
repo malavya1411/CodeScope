@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg-primary text-fg-primary font-sans antialiased m-0 p-0 overflow-hidden;
+  }
+  
+  #root {
+    @apply h-screen w-screen flex flex-col;
+  }
+
+  /* Custom Scrollbars to match VS Code */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--cs-scrollbar);
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--cs-scrollbar-hover);
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent text-accent-fg hover:bg-accent-hover px-3 py-1.5 rounded-sm text-sm font-medium transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply bg-bg-secondary text-fg-primary hover:bg-bg-hover border border-border-light px-3 py-1.5 rounded-sm text-sm font-medium transition-colors;
+  }
+
+  .card {
+    @apply bg-bg-secondary border border-border-light rounded shadow-sm overflow-hidden;
+  }
+
+  .card-header {
+    @apply px-4 py-3 border-b border-border-light bg-bg-tertiary flex items-center justify-between;
+  }
+
+  .card-body {
+    @apply p-4;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-2 px-3 py-2 rounded-sm cursor-pointer text-sm text-fg-secondary hover:text-fg-primary hover:bg-bg-hover transition-colors;
+  }
+
+  .nav-item.active {
+    @apply bg-bg-selected text-fg-primary;
+  }
+
+  /* Node specific styles for React Flow */
+  .react-flow__node {
+    @apply border-border-light shadow-sm;
+  }
+  
+  .react-flow__handle {
+    @apply w-2 h-2 bg-border-light border-border;
+  }
+  
+  .react-flow__edge-path {
+    @apply stroke-border-light;
+  }
+}
