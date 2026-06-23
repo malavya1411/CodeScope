@@ -1,6 +1,6 @@
 {
-  "name": "codescope",
-  "displayName": "CodeScope",
+  "name": "codescope-offline",
+  "displayName": "CodeScope Offline",
   "description": "Understand any codebase — no AI required. AST-powered code intelligence, fully offline.",
   "version": "1.0.0",
   "publisher": "codescope",
