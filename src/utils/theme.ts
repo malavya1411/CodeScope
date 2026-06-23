@@ -123,7 +123,7 @@ export function generateWebviewHTML(
 <body>
   <div id="root"></div>
   ${dataScript}
-  <script nonce="${nonce}" src="${scriptUri}"></script>
+  <script type="module" nonce="${nonce}" src="${scriptUri}"></script>
 </body>
 </html>`;
 }

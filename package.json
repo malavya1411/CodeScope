@@ -2,7 +2,7 @@
   "name": "codescope-offline",
   "displayName": "CodeScope Offline",
   "description": "Understand any codebase — no AI required. AST-powered code intelligence, fully offline.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "codescope",
   "icon": "media/icon.png",
   "repository": {

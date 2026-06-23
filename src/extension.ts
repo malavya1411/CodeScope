@@ -10,6 +10,7 @@ import { getIndexService } from './services/indexService';
 import { getThemeService } from './services/themeService';
 import { getWorkerService } from './services/workerService';
 import { DashboardPanel } from './panels/DashboardPanel';
+import { QuickActionsProvider } from './providers/QuickActionsProvider';
 
 // Commands
 import { analyzeFileCommand } from './commands/analyzeFile';
@@ -29,6 +30,12 @@ export function activate(context: vscode.ExtensionContext) {
   getIndexService();
   getThemeService();
   getWorkerService();
+
+  // Register Tree Views
+  const quickActionsProvider = new QuickActionsProvider();
+  vscode.window.registerTreeDataProvider('codescope.quickActions', quickActionsProvider);
+  // Optional: Provide a dummy for project view so it doesn't show an error
+  vscode.window.registerTreeDataProvider('codescope.projectView', quickActionsProvider);
 
   // Register Commands
   context.subscriptions.push(
