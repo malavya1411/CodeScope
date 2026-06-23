@@ -107,7 +107,7 @@ export interface ImportingFileEntry {
     relativePath: string;
     dependencyCount: number;
 }
-export type WebviewMessageType = 'analyzeFile' | 'analyzeProject' | 'getDependencyGraph' | 'getComplexityReport' | 'trackVariable' | 'getCallHierarchy' | 'getExecutionFlow' | 'getHeatmap' | 'navigateToFile' | 'refresh' | 'ready';
+export type WebviewMessageType = 'analyzeFile' | 'analyzeProject' | 'getDependencyGraph' | 'getComplexityReport' | 'trackVariable' | 'getCallHierarchy' | 'getExecutionFlow' | 'getHeatmap' | 'navigateToFile' | 'refresh' | 'ready' | 'error';
 export interface WebviewMessage<T = unknown> {
     type: WebviewMessageType;
     payload?: T;

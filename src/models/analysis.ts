@@ -147,7 +147,8 @@ export type WebviewMessageType =
   | 'getHeatmap'
   | 'navigateToFile'
   | 'refresh'
-  | 'ready';
+  | 'ready'
+  | 'error';
 
 export interface WebviewMessage<T = unknown> {
   type: WebviewMessageType;

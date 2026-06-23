@@ -102,6 +102,10 @@ export class DashboardPanel {
         }
         break;
       }
+      case 'error':
+        console.error('[Webview Error]', message.payload);
+        vscode.window.showErrorMessage('CodeScope Webview Error: ' + message.payload);
+        break;
     }
   }
 

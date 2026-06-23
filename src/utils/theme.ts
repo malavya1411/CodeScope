@@ -115,7 +115,7 @@ export function generateWebviewHTML(
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}'; img-src ${cspSource} data:; font-src ${cspSource};">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${cspSource} 'unsafe-inline'; script-src ${cspSource} 'nonce-${nonce}' 'unsafe-eval' 'unsafe-inline'; img-src ${cspSource} data:; font-src ${cspSource};">
   <title>CodeScope</title>
   <style nonce="${nonce}">${themeCSS}</style>
   <link rel="stylesheet" href="${styleUri}">
@@ -123,7 +123,16 @@ export function generateWebviewHTML(
 <body>
   <div id="root"></div>
   ${dataScript}
-  <script type="module" nonce="${nonce}" src="${scriptUri}"></script>
+  <script nonce="${nonce}">
+    const vscode = acquireVsCodeApi();
+    window.addEventListener('error', (event) => {
+      vscode.postMessage({ type: 'error', payload: event.message + ' at ' + event.filename + ':' + event.lineno });
+    });
+    window.addEventListener('unhandledrejection', (event) => {
+      vscode.postMessage({ type: 'error', payload: 'Unhandled Rejection: ' + event.reason });
+    });
+  </script>
+  <script type="module" crossorigin nonce="${nonce}" src="${scriptUri}"></script>
 </body>
 </html>`;
 }
